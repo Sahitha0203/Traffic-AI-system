@@ -3,6 +3,7 @@ from datetime import datetime
 import cv2
 from ultralytics import YOLO
 
+
 class CongestionMonitor:
     def __init__(self, model_path, video_source, conf_threshold=0.5, interval_sec=5, smooth_window=6):
         self.model_path = model_path
@@ -82,5 +83,25 @@ class CongestionMonitor:
             "timestamp": self.last_update_time,
             "avg_count": self.current_avg_count,
             "window_history": list(self.status_history)
+        }
+
+    def calculate_signal_timings(self):
+        """
+        Calculate green light times for lanes based on congestion level.
+        Simple rule-based example for single lane; extend as needed.
+        """
+        total_cycle_time = 120  # seconds for full signal cycle
+        min_time = 10  # minimum green time in seconds
+
+        if self.current_congestion == "HIGH":
+            green_time = total_cycle_time * 0.6
+        elif self.current_congestion == "MODERATE":
+            green_time = total_cycle_time * 0.3
+        else:
+            green_time = total_cycle_time * 0.1
+
+        # This example is for single lane; for multi-lane, calculate per lane.
+        return {
+            "lane_1_green_time": max(min_time, int(green_time))
         }
 
