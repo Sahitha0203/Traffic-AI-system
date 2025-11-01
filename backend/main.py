@@ -4,6 +4,7 @@ from fastapi.responses import JSONResponse
 import threading
 from model import CongestionMonitor
 
+
 app = FastAPI()
 
 app.add_middleware(
@@ -30,5 +31,11 @@ def startup_event():
 @app.get("/status")
 def get_status():
     return JSONResponse(content=congestion_monitor.get_latest_status())
+
+@app.get("/signal_timings")
+def get_signal_timings():
+    timings = congestion_monitor.calculate_signal_timings()
+    return JSONResponse(content=timings)
+
 
 
