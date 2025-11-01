@@ -32,10 +32,6 @@ def startup_event():
 def get_status():
     return JSONResponse(content=congestion_monitor.get_latest_status())
 
-@app.get("/signal_timings")
-def get_signal_timings():
-    timings = congestion_monitor.calculate_signal_timings()
-    return JSONResponse(content=timings)
 
 
 

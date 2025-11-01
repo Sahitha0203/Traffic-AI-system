@@ -85,23 +85,4 @@ class CongestionMonitor:
             "window_history": list(self.status_history)
         }
 
-    def calculate_signal_timings(self):
-        """
-        Calculate green light times for lanes based on congestion level.
-        Simple rule-based example for single lane; extend as needed.
-        """
-        total_cycle_time = 120  # seconds for full signal cycle
-        min_time = 10  # minimum green time in seconds
-
-        if self.current_congestion == "HIGH":
-            green_time = total_cycle_time * 0.6
-        elif self.current_congestion == "MODERATE":
-            green_time = total_cycle_time * 0.3
-        else:
-            green_time = total_cycle_time * 0.1
-
-        # This example is for single lane; for multi-lane, calculate per lane.
-        return {
-            "lane_1_green_time": max(min_time, int(green_time))
-        }
 
