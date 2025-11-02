@@ -1,18 +1,16 @@
-import bgVideo from "../4372788-uhd_3840_2024_24fps.mp4";
+import { BG_URL } from "../../utils/constant";
+
 const Body = () => (
-  <div className="relative w-full h-[calc(100vh-80px)] overflow-hidden">
-    {/* Video Background */}
-    <video
-      autoPlay
-      loop
-      muted
-      playsInline
-      className="absolute top-0 left-0 w-full h-full object-cover -z-10"
-    >
-      <source src={bgVideo} type="video/mp4" />
-    </video>
+  <div className="relative w-full min-h-screen">
+    {/* Background image with rounded corners */}
+    <div
+      className="absolute top-0 left-0 w-full h-full bg-cover bg-center rounded-3xl -z-10"
+      style={{ backgroundImage: `url(${BG_URL})` }}
+    />
     {/* Overlay for readability */}
-    <div className="relative z-10 flex flex-col items-start justify-center h-full px-12 bg-black/40">
+    <div className="absolute top-0 left-0 w-full h-full bg-black opacity-40 rounded-3xl -z-10" />
+    {/* Hero content */}
+    <div className="relative z-10 flex flex-col justify-center items-start min-h-screen px-12 pt-32">
       <h1 className="text-5xl font-bold text-white drop-shadow-lg mb-4">
         AI-Powered Traffic Congestion Detection
       </h1>
